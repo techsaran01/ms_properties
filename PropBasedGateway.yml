@@ -4,6 +4,8 @@ server:
 spring: 
   cloud:
     gateway:
+      default-filters:
+      - AddRequestParameter=reqParam, GlobalReqParam
       routes:
       - id: addressMS
         #uri: http://localhost:8200/
