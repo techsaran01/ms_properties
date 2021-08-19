@@ -6,14 +6,16 @@ spring:
     gateway:
       routes:
       - id: addressMS
-        uri: http://localhost:8200/
+        #uri: http://localhost:8200/
+        uri: lb://ADDRESSMS
         predicates:
         - Path=/address/**
         filters:
         - AddRequestHeader=MyHeader, first-request-header
         - AddResponseHeader=MyHeader, first-response-header
       - id: userProfileMS
-        uri: http://localhost:8100/
+        #uri: http://localhost:8100/
+        uri: lb://USERPROFILEMS
         predicates:
         - Path=/profile/**
         filters:
