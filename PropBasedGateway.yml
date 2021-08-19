@@ -1,0 +1,20 @@
+spring: 
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      routes:
+      - id: addressMS
+        uri: http://localhost:8200/
+        predicates:
+        - Path=/address/**
+        filters:
+        - AddRequestHeader=MyHeader, first-request-header
+        - AddResponseHeader=MyHeader, first-response-header
+      - id: userProfileMS
+        uri: http://localhost:8100/
+        predicates:
+        - Path=/profile/**
+        filters:
+        - AddRequestHeader=MyHeader, first-request-header
+        - AddResponseHeader=MyHeader, first-response-header
